@@ -126,4 +126,8 @@ class Player
             'y' => $y,
         ];
     }
+
+    public function getDecisionTree() : string {
+        return $this->user->getDecisionTree();
+    }
 }

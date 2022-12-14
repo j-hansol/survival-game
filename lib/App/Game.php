@@ -242,4 +242,12 @@ class Game
     {
         return $this->play_data_list_log;
     }
+
+    public function displayDecisionTree() : string {
+        $html_string = "";
+        foreach($this->player_list as $player) {
+            $html_string .= $player->getDecisionTree();
+        }
+        return $html_string;
+    }
 }

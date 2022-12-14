@@ -28,4 +28,6 @@ interface UserInterface
      * @return ActionEnum
      */
     public function action(PlayerInfo $player_info, array $tile_info_table): ActionEnum;
+
+    public function getDecisionTree() : string;
 }

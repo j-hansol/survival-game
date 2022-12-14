@@ -11,7 +11,7 @@ use App\Game;
  * 본인이 개발한 클래스에 대한 소개를 주석에 자유롭게 작성해주세요.
  * 이 예제 코드를 참고하여 본인만의 클래스를 만들어주세요.
  */
-class SampleUser implements \App\UserInterface
+class Hansan implements \App\UserInterface
 {
     /**
      * 게임 화면에 표시될 플레이어 이름입니다.
@@ -20,7 +20,7 @@ class SampleUser implements \App\UserInterface
      */
     public function getName(): string
     {
-        return 'MPUG';
+        return '한산';
     }
 
     /**
@@ -31,9 +31,7 @@ class SampleUser implements \App\UserInterface
     public function getMessage(): string
     {
         $msg_list = [
-            '끝까지 살아남자!',
-            '아이쿠! 아파요~',
-            '최선을 다해 피하는 중...',
+            '샐러드 드시고 싶으면 말씀주세요',
         ];
         shuffle($msg_list);
         return $msg_list[0];

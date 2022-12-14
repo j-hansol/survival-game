@@ -61,6 +61,140 @@ $game->play();
     .l-dashboard {
         width: 400px;
     }
+
+    .decision-tree-wrapper {
+        width: 50rem;
+        height: 100%;
+        background-color: rgba(0,0,0, 0.5);
+        overflow: scroll;
+        position: fixed;
+        top: 0;
+        right: -50rem;
+        transition: all 0.5s;
+    }
+
+    .decision-tree-wrapper.show {
+        display: block;
+        right: 0;
+    }
+
+    .tree_row {
+        margin-top: 1rem;
+    }
+
+    .box {
+        background-color: black;
+        color: white;
+        padding: 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .rbox {
+        background-color: darkred;
+        color: white;
+        padding: 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .shield_count {
+        background-color: darkred;
+        color: white;
+        text-align: center;
+    }
+
+    .turn_no {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 0.5rem;
+    }
+
+    .js-turn {
+        margin-left: 2rem;
+        font-size: 3rem;
+        font-weight: bold;
+        color: yellow;
+    }
+
+    .hit {
+        color: green;
+        font-weight: bold;
+    }
+
+    .rhit {
+        color: yellow;
+        font-weight: bold;
+    }
+
+    .wall {
+        background-color: black;
+        color: white;
+        padding: 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .decision-tree-toggle-wrapper {
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 1rem;
+    }
+
+    #decision-tree-toggle {
+        position: relative;
+        background-color: rgba(255,255,255,0.3);
+        width: 2rem;
+        height: 2rem;
+        padding: 0.5rem;
+        border-radius: 10px;
+        border: 1px solid white;
+        cursor: pointer;
+    }
+
+    #decision-tree-toggle .menu-line {
+        width: 2rem;
+        height: 4px;
+        border: none;
+        background-color: white;
+        position: absolute;
+        display: block;
+        transition: all 0.5s;
+    }
+
+    #decision-tree-toggle .menu-line:nth-child(1) {
+        top: 0.5rem;
+        left: 0.5rem;
+    }
+
+    #decision-tree-toggle .menu-line:nth-child(2) {
+        top: 50%;
+        left: 0.5rem;
+        margin-top: -2px;
+    }
+
+    #decision-tree-toggle .menu-line:nth-child(3) {
+        bottom: 0.5rem;
+        left: 0.5rem;
+    }
+
+    #decision-tree-toggle.show .menu-line:nth-child(1) {
+        top: 1.4rem;
+        left: 0.5rem;
+        transform: rotateZ(45deg);
+    }
+
+    #decision-tree-toggle.show .menu-line:nth-child(2) {
+        top: 50%;
+        left: 0.5rem;
+        margin-top: -2px;
+        display: none;
+    }
+
+    #decision-tree-toggle.show .menu-line:nth-child(3) {
+        bottom: 1.4rem;
+        left: 0.5rem;
+        transform: rotateZ(-45deg);
+    }
     </style>
 </head>
 <body>
@@ -74,6 +208,18 @@ $game->play();
     </div>
 </div>
 
+<div class="decision-tree-wrapper">
+    <?php
+    echo $game->displayDecisionTree();
+    ?>
+</div>
+<div class="decision-tree-toggle-wrapper">
+    <div class="toggle-btn" id="decision-tree-toggle">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+    </div>
+</div>
 <script type="module">
 import {Game} from '/js/Game.js';
 
@@ -92,6 +238,19 @@ const game = new Game(
 document.querySelector('.js-play').addEventListener('click', () => {
     game.play();
 });
+
+document.querySelector('#decision-tree-toggle').addEventListener('click', () => {
+    let tree_wrapper = document.querySelector('.decision-tree-wrapper');
+    let button = document.querySelector('#decision-tree-toggle');
+    if(button.classList.contains('show')) {
+        button.classList.remove('show');
+        tree_wrapper.classList.remove('show');
+    }
+    else {
+        button.classList.add('show');
+        tree_wrapper.classList.add('show');
+    }
+})
 </script>
 
 </body>
